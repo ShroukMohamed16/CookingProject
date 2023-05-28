@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_10sdp">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/meal_card"
         android:layout_margin="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/_20sdp"
-        app:cardCornerRadius="@dimen/_20sdp"
+        android:elevation="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_30sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -42,10 +41,10 @@
                 app:layout_constraintTop_toBottomOf="@id/meal_img" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_marginTop="@dimen/_20sdp"
-                android:id="@+id/materialButton"
+                android:id="@+id/addToFavButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/white"
                 android:text="Add to Favorite"
                 android:textColor="@color/black"
@@ -53,12 +52,17 @@
                 app:cornerRadius="@dimen/_10sdp"
                 app:icon="@drawable/favorite_icon"
                 app:iconTint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/meal_name" />
+                app:layout_constraintTop_toBottomOf="@id/meal_name"
+                app:layout_constraintVertical_bias="0.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 

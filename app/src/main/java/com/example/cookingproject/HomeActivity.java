@@ -3,19 +3,14 @@ package com.example.cookingproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.cookingproject.home.view.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.fragment.app.Fragment;
 
 
@@ -36,19 +31,19 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.item_1:
+                    case R.id.homeFragment:
                         replaceFragment(new HomeFragment());
                         break;
-                    case R.id.item_2:
+                    case R.id.searchFragment:
                         replaceFragment(new SearchFragment());
                         break;
-                    case R.id.item_3:
+                    case R.id.favoriteFragment:
                         replaceFragment(new FavoriteFragment());
                         break;
-                    case R.id.item_4:
+                    case R.id.planFragment:
                         replaceFragment(new PlanFragment());
                         break;
-                    case R.id.item_5:
+                    case R.id.profileFragment:
                         replaceFragment(new ProfileFragment());
                         break;
 

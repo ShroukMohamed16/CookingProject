@@ -3,6 +3,9 @@ package com.example.cookingproject;
 public class UserData {
     private String email,username;
 
+    public UserData() {
+    }
+
     public UserData(String email, String username) {
         this.email = email;
         this.username = username;

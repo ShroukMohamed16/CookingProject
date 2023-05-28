@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -32,16 +32,18 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/profilr_btn"
+        android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:text="Logout"
+        app:icon="@drawable/log_out"
+        app:iconTint="@color/white"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/nameTxt"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/nameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

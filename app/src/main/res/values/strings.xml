@@ -22,4 +22,6 @@
     <string name="plan">Plan</string>
     <string name="profile">Profile</string>
     <string name="searchbar_hint">Enter Meal Name</string>
+    <string name="this_week">This Week</string>
+    <string name="daily_inspiration">Daily Inspiration</string>
 </resources>
