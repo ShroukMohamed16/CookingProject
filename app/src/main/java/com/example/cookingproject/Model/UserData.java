@@ -1,4 +1,4 @@
-package com.example.cookingproject;
+package com.example.cookingproject.Model;
 
 public class UserData {
     private String email,username;

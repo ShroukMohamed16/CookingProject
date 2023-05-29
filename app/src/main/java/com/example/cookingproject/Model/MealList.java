@@ -1,21 +1,19 @@
 package com.example.cookingproject.Model;
 
-public class MealList {
-    Meal[] meals;
+import java.util.List;
 
-    public MealList(Meal[] meals) {
+public class MealList {
+
+    List<Meal> meals;
+    public MealList(List<Meal> meals) {
         this.meals = meals;
     }
 
-    public Meal[] getMeal() {
+    public List<Meal> getMeals() {
         return meals;
     }
 
-    public Meal[] getMeals() {
-        return meals;
-    }
-
-    public void setMeals(Meal[] meals) {
+    public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
 

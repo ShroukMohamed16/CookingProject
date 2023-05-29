@@ -16,7 +16,7 @@ public class Meal implements Serializable
     private boolean isFavorite;
 
     @NonNull
-    private String nameDay;
+    private String nameDay="";
     private String strMeal;
     private String strDrinkAlternate;
     private String strCategory;

@@ -24,4 +24,8 @@
     <string name="searchbar_hint">Enter Meal Name</string>
     <string name="this_week">This Week</string>
     <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="my_fav_meals">Favorite Meals</string>
+    <string name="your_profile">Profile</string>
+    <string name="by_country">Meals By Country</string>
+    <string name="by_category">Meals By Category</string>
 </resources>

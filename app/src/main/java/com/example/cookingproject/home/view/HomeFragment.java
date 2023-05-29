@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements HomeViewInterface {
+public class HomeFragment extends Fragment implements HomeViewInterface,onClickListener {
 
     RecyclerView mealsRecyclerView;
     Presenter presenter;
@@ -41,7 +41,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
          View view  = inflater.inflate(R.layout.fragment_home, container, false);
         mealsRecyclerView = view.findViewById(R.id.meal_rv);
-        mealsRecyclerView.setAdapter(new InspirationAdapter(getContext(),new ArrayList<>(),this));
+        inspirationAdapter = new InspirationAdapter(getContext(),new ArrayList<>(),this);
+        mealsRecyclerView.setAdapter(inspirationAdapter);
         mealsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         presenter = new Presenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         presenter.getDailyMeals();
@@ -59,7 +60,12 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
     public void showDaily(List<Meal> mealList) {
         inspirationAdapter.setList(mealList);
         inspirationAdapter.notifyDataSetChanged();
-        Toast.makeText(getContext(), "Okay", Toast.LENGTH_SHORT).show();
-;
+
+    }
+
+    @Override
+    public void onClickAddTofav(Meal meal) {
+        presenter.addToFav(meal);
+
     }
 }
