@@ -1,9 +1,10 @@
-package com.example.cookingproject.home.view;
+package com.example.cookingproject.search.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,19 +16,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
+import com.example.cookingproject.home.view.HomeFragmentDirections;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AllCountryAdapter extends RecyclerView.Adapter<AllCountryAdapter.ViewHolder>{
+public class SearchCountryAdapter extends RecyclerView.Adapter<SearchCountryAdapter.ViewHolder>{
     private Context context;
     private List<Meal> meals;
     onClickListener onClickListener;
     String[] countriesFlags ;
 
-    public AllCountryAdapter(Context context, ArrayList<Meal> meals, onClickListener onClickListener) {
+    public SearchCountryAdapter(Context context, ArrayList<Meal> meals, onClickListener onClickListener) {
         this.context = context;
         this.meals = meals;
         this.onClickListener = onClickListener;
@@ -36,14 +39,14 @@ public class AllCountryAdapter extends RecyclerView.Adapter<AllCountryAdapter.Vi
 
     @NonNull
     @Override
-    public AllCountryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingredients,parent,false);
-        AllCountryAdapter.ViewHolder viewHolder = new AllCountryAdapter.ViewHolder(v);
+    public SearchCountryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingredients_card,parent,false);
+        SearchCountryAdapter.ViewHolder viewHolder = new SearchCountryAdapter.ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllCountryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchCountryAdapter.ViewHolder holder, int position) {
         holder.name.setText(meals.get(position).getStrArea());
         if(position < countriesFlags.length) {
             Glide.with(context).load(countriesFlags[position])
@@ -51,7 +54,7 @@ public class AllCountryAdapter extends RecyclerView.Adapter<AllCountryAdapter.Vi
                             .placeholder(R.drawable.ic_launcher_background)
                             .error(R.drawable.ic_launcher_foreground)).into(holder.circleImageView);
         }
-        holder.circleImageView.setOnClickListener(new View.OnClickListener() {
+       /* holder.circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HomeFragmentDirections.ActionHomeFragmentToCountryFragment action  = HomeFragmentDirections.actionHomeFragmentToCountryFragment(meals.get(position).getStrArea());
@@ -65,7 +68,7 @@ public class AllCountryAdapter extends RecyclerView.Adapter<AllCountryAdapter.Vi
                 Navigation.findNavController(v).navigate(action);
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -79,12 +82,11 @@ public class AllCountryAdapter extends RecyclerView.Adapter<AllCountryAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        CircleImageView circleImageView;
+        ImageView circleImageView;
         TextView name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            circleImageView  = itemView.findViewById(R.id.circleImageView);
-            circleImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.location));
+            circleImageView  = itemView.findViewById(R.id.ImageView);
             name = itemView.findViewById(R.id.name);
         }
     }

@@ -1,4 +1,4 @@
 package com.example.cookingproject.search.view;
 
-public class SearchAdapter {
+public interface onClickListener {
 }

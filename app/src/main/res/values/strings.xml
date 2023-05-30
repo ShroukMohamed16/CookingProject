@@ -39,4 +39,41 @@
     <string name="scrolltext">Scroll Text</string>
     <string name="ingredients">Ingredients</string>
     <string name="video">Video</string>
+    <string name="preparation_video">preparation video</string>
+    <string name="step">Steps</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="search_by_ingredients">Search by Ingredients</string>
+    <string name="search_by_category">Search by Category</string>
+    <string name="search_by_country">Search By Country</string>
+
+    <string-array name="flags">
+        <item>https://www.worldometers.info/img/flags/us-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/uk-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ca-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ch-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/hr-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/nl-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/eg-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/fr-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/gr-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/in-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ei-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/it-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/jm-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ja-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ke-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/my-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/mx-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/mo-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/pl-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/po-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/rs-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/sp-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/th-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/ts-flag.gif</item>
+        <item>https://www.worldometers.info/img/flags/tu-flag.gif</item>
+        <item>https://www.freepnglogos.com/uploads/globe-png/globe-icon-aquanox-icons-softiconsm-34.png</item>
+        <item>https://www.worldometers.info/img/flags/vm-flag.gif</item>
+
+    </string-array>
 </resources>

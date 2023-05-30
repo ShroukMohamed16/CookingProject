@@ -15,14 +15,14 @@ public interface MealServices {
     Call<MealList> getDailyInspirationMeals();
     @GET("filter.php")
     Call<MealList> filterByCountry(@Query("a") String country);
-    @GET("filter.php?i={ingredient}")
-    Call<MealList> filterByIngredient(@Path("ingredient")String ingredient);
+    @GET("filter.php")
+    Call<MealList> filterByIngredient(@Query("i") String ingredient);
     @GET("filter.php")
     Call<MealList> filterByCategory(@Query("c") String category);
     @GET("lookup.php?i={id}")
     Call<MealList> lookUpById(@Path("id")int id);
-    @GET("search.php?s={name}")
-    Call<MealList> searchByName(@Path("name")String name);
+    @GET("search.php")
+    Call<MealList> searchByName(@Query("s") String name);
     @GET("list.php?a=list")
     Call<MealList> listAllByCountry();
     @GET("list.php?i=list")

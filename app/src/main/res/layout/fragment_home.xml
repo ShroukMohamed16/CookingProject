@@ -28,6 +28,7 @@
                 android:text="@string/daily_inspiration"
                 android:textSize="@dimen/_20ssp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 />
@@ -44,6 +45,8 @@
                 android:text="@string/by_category"
                 android:textSize="@dimen/_20ssp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+
                 android:textColor="@color/black"
                 android:textStyle="bold"
 
@@ -62,6 +65,7 @@
                 android:text="@string/by_country"
                 android:textSize="@dimen/_20ssp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 />

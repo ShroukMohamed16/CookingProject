@@ -25,6 +25,7 @@ public class Meal implements Serializable
     private String strMealThumb;
     private String strTags;
     private String strYoutube;
+    private String strIngredient;
     private String strIngredient1;
     private String strIngredient2;
     private String strIngredient3;
@@ -71,6 +72,14 @@ public class Meal implements Serializable
     @NonNull
     public String getIdMeal() {
         return idMeal;
+    }
+
+    public String getStrIngredient() {
+        return strIngredient;
+    }
+
+    public void setStrIngredient(String strIngredient) {
+        this.strIngredient = strIngredient;
     }
 
     public void setIdMeal(String idMeal) {

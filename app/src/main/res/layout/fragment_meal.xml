@@ -1,279 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:fillViewport="true"
+    android:padding="16dp"
+    tools:context=".meals.view.MealFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_70sdp"
-        android:descendantFocusability="blocksDescendants">
+        android:layout_height="match_parent"
 
-
-        <ImageView
-            android:id="@+id/image_food"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            android:contentDescription="@string/image"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/image_protection"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            android:contentDescription="@string/image"
-            android:scaleType="fitXY"
-            android:src="#2DFFFFFF"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@color/black"
-            android:elevation="@dimen/_15sdp"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:layout_constraintBottom_toTopOf="@id/text_view_MealName"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart">
-
-            <ImageView
-                android:id="@+id/imageCalender"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:elevation="@dimen/_5sdp"
-                android:src="@drawable/calendar_icon"
-                app:tint="@color/orange" />
-
-            <ImageView
-                android:id="@+id/imageFavourite"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:elevation="@dimen/_5sdp"
-                android:src="@drawable/favorite_icon"
-                app:tint="@color/orange" />
-
-
-        </androidx.cardview.widget.CardView>
-
+        >
 
         <TextView
-            android:id="@+id/text_view_MealName"
-            android:layout_width="0dp"
+            android:id="@+id/itemPageMealName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_36sdp"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="4dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/image_food"
-            tools:text="@string/category" />
+            app:layout_constraintEnd_toEndOf="@+id/profileUserImage"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/profileUserImage"
+            app:layout_constraintTop_toBottomOf="@+id/profileUserImage" />
 
-
-        <ImageView
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:padding="@dimen/_8sdp"
-            android:src="@drawable/add_icon"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toTopOf="@id/image_food"
-            app:tint="@color/black" />
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/_15sdp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/_15sdp" />
-
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileUserImage"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_margin="25dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/instructions"
+            android:id="@+id/itemPageMealCountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="@string/instructions"
-            android:textAllCaps="true"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/_16ssp"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/text_view_MealName" />
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/itemPageMealName"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@+id/itemPageMealName"
+            app:layout_constraintTop_toBottomOf="@+id/itemPageMealName" />
 
-        <TextView
-            android:id="@+id/text_view_steps"
-            android:layout_width="0dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_to_calender"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_icon"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_7sdp"
-            android:text="@string/scrolltext"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
+            app:icon="@drawable/calendar_month"
+            app:iconTint="@color/black"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/instructions"
-            app:layout_constraintTop_toBottomOf="@id/instructions" />
+            android:text="@string/plan"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/add_to_favorite"
+            app:layout_constraintHorizontal_bias="0.319"
+            app:layout_constraintStart_toStartOf="@+id/profileUserImage"
+            app:layout_constraintTop_toBottomOf="@+id/itemPageMealCountry" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_to_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:icon="@drawable/favorite_icon"
+            android:text="@string/add"
+            android:textColor="@color/black"
+            app:iconTint="@color/black"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/add_to_calender"
+            app:layout_constraintEnd_toEndOf="@+id/profileUserImage"
+            app:layout_constraintTop_toTopOf="@+id/add_to_calender"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="itemPageMealName,profileUserImage,itemPageMealCountry,add_to_calender,add_to_favorite,line"
+            tools:layout_editor_absoluteY="791dp" />
 
         <View
-            android:id="@+id/line_after_step"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/orange"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/text_view_steps"
-            app:layout_constraintWidth_percent="0.5" />
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_to_calender" />
 
         <TextView
-            android:id="@+id/ingredients"
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/ingredients"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/text_view_steps" />
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/ingredient"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier1" />
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_ingredients"
+            android:id="@+id/ingredientRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:focusable="false"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/ingredients"
-            tools:listitem="@layout/ingredients" />
-
-        <View
-            android:id="@+id/line_after_ingredients"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/orange"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/recycler_ingredients"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/ingredients"
+            tools:orientation="vertical"
+            tools:spanCount="3" />
 
         <TextView
-            android:id="@+id/video"
+            android:id="@+id/Steps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/video"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/line_after_ingredients" />
+            android:layout_marginStart="16dp"
+            android:text="Steps:"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
-        <VideoView
-            android:id="@+id/videoView"
+        <TextView
+            android:id="@+id/itemPageMealSteps"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_150sdp"
-            android:elevation="@dimen/_16sdp"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/video" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/step"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/Steps"
+            app:layout_constraintTop_toBottomOf="@+id/Steps" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_play_vedio"
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange"
-            android:elevation="@dimen/_16sdp"
-            android:text="Play"
-            android:textSize="@dimen/_16sdp"
-            android:visibility="gone"
-            app:cornerRadius="@dimen/_8sdp"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/videoView" />
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="ingredientRecyclerView,textView5,line2"
+            tools:layout_editor_absoluteY="791dp" />
 
         <View
-            android:id="@+id/line_after_video"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="70dp"
-            android:background="@color/white"
-            app:layout_constraintCircleRadius="@dimen/_24sdp"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/btn_play_vedio"
-            app:layout_constraintWidth_percent="0.5" />
-
-        <FrameLayout
-            android:id="@+id/fakeRoot"
+            android:id="@+id/line2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/white"
-            android:elevation="@dimen/_4sdp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
-        <ProgressBar
-            android:id="@+id/progressDetails"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientRecyclerView" />
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemPageMealSteps" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_230sdp"
-            android:elevation="@dimen/_16sdp"
-            android:indeterminateTint="@color/teal_700"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="Steps,itemPageMealSteps,line3"
+            tools:layout_editor_absoluteY="791dp" />
+        <TextView
+            android:id="@+id/PreparationVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/preparation_video"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/barrier3" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCalender"
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:text="@string/add_to_calender"
-            app:cornerRadius="10dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_after_video"
-             android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@+id/PreparationVideo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
