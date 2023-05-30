@@ -1,5 +1,7 @@
 package com.example.cookingproject.Network;
 
+import com.example.cookingproject.Model.Ingredient;
+import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 
@@ -26,8 +28,7 @@ public interface MealServices {
     @GET("list.php?a=list")
     Call<MealList> listAllByCountry();
     @GET("list.php?i=list")
-    Call<MealList> listAllByIngredient();
+    Call<IngredientList> listAllByIngredient();
     @GET("list.php?c=list")
     Call<MealList> listAllByCategory();
-
 }

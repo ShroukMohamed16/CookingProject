@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cookingproject.Model.Ingredient;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -71,7 +72,9 @@ public class SearchFragment extends Fragment implements searchViewInterface , on
     }
 
     @Override
-    public void showAllIngredient(List<Meal> meal) {
+    public void showAllIngredient(List<Ingredient> ingredients) {
+        searchIngredientAdapter.setList(ingredients);
+        searchIngredientAdapter.notifyDataSetChanged();
 
 
     }

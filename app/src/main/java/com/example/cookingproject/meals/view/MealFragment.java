@@ -96,29 +96,29 @@ public class MealFragment extends Fragment implements mealViewInterface{
                 .error(R.drawable.ic_launcher_foreground)
                 .into(imageView);
         if(meal.get(0).getStrIngredient1()!="")
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient1(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient1()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient1(),"",""));
         if(!meal.get(0).getStrIngredient2().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient2(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient2()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient2(),"",""));
         if(!meal.get(0).getStrIngredient3().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient3(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient3()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient3(),"",""));
         if(!meal.get(0).getStrIngredient4().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient4(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient4()+".png"));
+            ingredients.add(new Ingredient("" ,meal.get(0).getStrIngredient4(),"",""));
         if(!meal.get(0).getStrIngredient5().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient5(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient5()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient5(),"",""));
         if(!meal.get(0).getStrIngredient6().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient6(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient6()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient6(),"",""));
         if(!meal.get(0).getStrIngredient7().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient7(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient7()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient7(),"",""));
         if(!meal.get(0).getStrIngredient8().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient8(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient8()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient8(),"",""));
         if(!meal.get(0).getStrIngredient9().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient9(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient9()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient9(),"",""));
         if(!meal.get(0).getStrIngredient10().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient10(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient10()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient10(),"",""));
         if(!meal.get(0).getStrIngredient11().equals(""))
-            ingredients.add(new Ingredient(meal.get(0).getStrIngredient11(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient11()+".png"));
+            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient11(),"",""));
         if(!meal.get(0).getStrIngredient12().equals(""))
-           ingredients.add(new Ingredient(meal.get(0).getStrIngredient12(),"https://www.themealdb.com/images/ingredients/"+meal.get(0).getStrIngredient12()+".png"));
+           ingredients.add(new Ingredient("",meal.get(0).getStrIngredient12(),"",""));
         ingredientAdapter=new IngredientAdapter(getContext(),ingredients);
         ingredientAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(ingredientAdapter);

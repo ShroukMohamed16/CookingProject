@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,21 +55,14 @@ public class SearchCountryAdapter extends RecyclerView.Adapter<SearchCountryAdap
                             .placeholder(R.drawable.ic_launcher_background)
                             .error(R.drawable.ic_launcher_foreground)).into(holder.circleImageView);
         }
-       /* holder.circleImageView.setOnClickListener(new View.OnClickListener() {
+       holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionHomeFragmentToCountryFragment action  = HomeFragmentDirections.actionHomeFragmentToCountryFragment(meals.get(position).getStrArea());
+                SearchFragmentDirections.ActionSearchFragmentToCountryFragment action  = SearchFragmentDirections.actionSearchFragmentToCountryFragment(meals.get(position).getStrArea());
                 Navigation.findNavController(v).navigate(action);
             }
         });
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HomeFragmentDirections.ActionHomeFragmentToCountryFragment action  = HomeFragmentDirections.actionHomeFragmentToCountryFragment(meals.get(position).getStrArea());
-                Navigation.findNavController(v).navigate(action);
 
-            }
-        });*/
     }
 
     @Override
@@ -82,10 +76,12 @@ public class SearchCountryAdapter extends RecyclerView.Adapter<SearchCountryAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        CardView cardView;
         ImageView circleImageView;
         TextView name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card_view);
             circleImageView  = itemView.findViewById(R.id.ImageView);
             name = itemView.findViewById(R.id.name);
         }

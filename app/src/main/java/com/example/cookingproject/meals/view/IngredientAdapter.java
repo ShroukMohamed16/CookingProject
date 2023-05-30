@@ -42,8 +42,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull IngredientAdapter.ViewHolder holder, int position) {
-        holder.name.setText(ingredient.get(position).getName());
-        String name = ingredient.get(position).getName();
+        holder.name.setText(ingredient.get(position).getStrIngredient());
+        String name = ingredient.get(position).getStrIngredient();
         Glide.with(context).load("https://www.themealdb.com/images/ingredients/"+ name+"-Small.png")
                 .apply(new RequestOptions().override(60,60)
                         .placeholder(R.drawable.ic_launcher_background)

@@ -102,6 +102,7 @@
         android:text="@string/log_in"
         android:backgroundTint="@color/orange"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:cornerRadius="@dimen/_8sdp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"

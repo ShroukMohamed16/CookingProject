@@ -1,29 +1,47 @@
 package com.example.cookingproject.Model;
 
 public class Ingredient {
+        public String idIngredient;
+        public String strIngredient;
+        public String strDescription;
+        public String strType;
 
-        String name;
-        String img;
-
-        public Ingredient(String name, String img) {
-            this.name = name;
-            this.img = img;
+        public Ingredient(String idIngredient, String strIngredient, String strDescription, String strType) {
+            this.idIngredient = idIngredient;
+            this.strIngredient = strIngredient;
+            this.strDescription = strDescription;
+            this.strType = strType;
         }
 
-        public String getName() {
-            return name;
+        public String getIdIngredient() {
+            return idIngredient;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setIdIngredient(String idIngredient) {
+            this.idIngredient = idIngredient;
         }
 
-        public String getImg() {
-            return img;
+        public String getStrIngredient() {
+            return strIngredient;
         }
 
-        public void setImg(String img) {
-            this.img = img;
+        public void setStrIngredient(String strIngredient) {
+            this.strIngredient = strIngredient;
+        }
+
+        public String getStrDescription() {
+            return strDescription;
+        }
+
+        public void setStrDescription(String strDescription) {
+            this.strDescription = strDescription;
+        }
+
+        public String getStrType() {
+            return strType;
+        }
+
+        public void setStrType(String strType) {
+            this.strType = strType;
         }
     }
-

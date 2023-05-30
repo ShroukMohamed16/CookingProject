@@ -1,5 +1,7 @@
 package com.example.cookingproject.countries.presenter;
 
+import com.example.cookingproject.Model.Ingredient;
+import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
@@ -33,6 +35,11 @@ public class CountryPresenter implements NetworkDelegate {
     public void onSuccessResponse(MealList meals) {
         List<Meal> meal = meals.getMeals();
         countryViewInterface.showAllMealsOfCountry(meal);
+
+    }
+
+    @Override
+    public void onSuccessResponseIngredient(IngredientList ingredientList) {
 
     }
 

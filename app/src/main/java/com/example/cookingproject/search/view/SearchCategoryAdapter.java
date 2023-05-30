@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,20 +50,13 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
                 .apply(new RequestOptions().override(100,100)
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_foreground)).into(holder.circleImageView);
-       /* holder.circleImageView.setOnClickListener(new View.OnClickListener() {
+       holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment2(meals.get(position).getStrCategory()));
-
+              Navigation.findNavController(v).navigate(SearchFragmentDirections.actionSearchFragmentToCategoryFragment(meals.get(position).getStrCategory()));
             }
         });
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment2(meals.get(position).getStrCategory()));
 
-            }
-        });*/
     }
 
     @Override
@@ -75,11 +69,13 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
         this.meals = updateList;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
         ImageView circleImageView;
         TextView name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card_view);
             circleImageView  = itemView.findViewById(R.id.ImageView);
             name = itemView.findViewById(R.id.name);
         }

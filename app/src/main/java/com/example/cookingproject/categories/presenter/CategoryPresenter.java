@@ -1,5 +1,7 @@
 package com.example.cookingproject.categories.presenter;
 
+import com.example.cookingproject.Model.Ingredient;
+import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
@@ -32,6 +34,11 @@ public class CategoryPresenter implements NetworkDelegate {
     public void onSuccessResponse(MealList meals) {
         List<Meal> meal = meals.getMeals();
         categoryViewInterface.showAllMealsOfCategory(meal);
+
+    }
+
+    @Override
+    public void onSuccessResponseIngredient(IngredientList ingredientList) {
 
     }
 
