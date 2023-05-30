@@ -22,15 +22,29 @@ public class Presenter implements NetworkDelegate {
         repository.repoDailyInspirationMeals(this);
     }
     public void addToFav(Meal meal){
-        repository.repoInsertToFav(meal);
+        if(!meal.isFavorite()) {
+            meal.setFavorite(true);
+            repository.repoInsertToFav(meal);
+        }
 
     }
+    public void getAllCategory(){
+        repository.repoListAllByCategory(this);
+    }
+    public void getAllCountry(){repository.repoListAllByCountry(this);};
 
     @Override
     public void onSuccessResponse(MealList mealList) {
         List<Meal> meal= mealList.getMeals();
-        Log.i("TAG", "onSuccessResponse: Presenter"+ meal.get(0).getStrMeal());
-        homeViewInterface.showDaily(meal);
+        if(meal.get(0).getStrMeal() != null) {
+            homeViewInterface.showDaily(meal);
+        }
+        else if(meal.get(0).getStrArea() == null) {
+            homeViewInterface.showAllCategory(meal);
+        }
+        else if(meal.get(0).getStrCategory() == null){
+            homeViewInterface.showAllCountry(meal);
+        }
     }
 
     @Override

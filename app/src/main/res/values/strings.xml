@@ -22,10 +22,21 @@
     <string name="plan">Plan</string>
     <string name="profile">Profile</string>
     <string name="searchbar_hint">Enter Meal Name</string>
-    <string name="this_week">This Week</string>
+    <string name="this_week">Your Plan</string>
     <string name="daily_inspiration">Daily Inspiration</string>
     <string name="my_fav_meals">Favorite Meals</string>
     <string name="your_profile">Profile</string>
     <string name="by_country">Meals By Country</string>
     <string name="by_category">Meals By Category</string>
+    <string name="add">Add</string>
+    <string name="logout">Logout</string>
+    <string name="your_plan">Your Plan</string>
+    <string name="name">Name</string>
+    <string name="add_to_calender">Add To Plan</string>
+    <string name="image">image</string>
+    <string name="category">Category</string>
+    <string name="instructions">Instructions</string>
+    <string name="scrolltext">Scroll Text</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="video">Video</string>
 </resources>

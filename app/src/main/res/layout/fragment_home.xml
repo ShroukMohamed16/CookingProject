@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_country"
+                android:text="@string/by_category"
                 android:textSize="@dimen/_20ssp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="@color/black"
@@ -49,6 +49,7 @@
 
                 />
           <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/category_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -58,13 +59,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_category"
+                android:text="@string/by_country"
                 android:textSize="@dimen/_20ssp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 />
           <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/country_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

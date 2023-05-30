@@ -8,16 +8,17 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface MealServices {
     @GET("random.php")
     Call<MealList> getDailyInspirationMeals();
-    @GET("filter.php?a={country}")
-    Call<MealList> filterByCountry(@Path("country")String country);
+    @GET("filter.php")
+    Call<MealList> filterByCountry(@Query("a") String country);
     @GET("filter.php?i={ingredient}")
     Call<MealList> filterByIngredient(@Path("ingredient")String ingredient);
-    @GET("filter.php?c={category}")
-    Call<MealList> filterByCategory(@Path("category")String category);
+    @GET("filter.php")
+    Call<MealList> filterByCategory(@Query("c") String category);
     @GET("lookup.php?i={id}")
     Call<MealList> lookUpById(@Path("id")int id);
     @GET("search.php?s={name}")
