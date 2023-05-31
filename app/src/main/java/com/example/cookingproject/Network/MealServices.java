@@ -1,11 +1,6 @@
 package com.example.cookingproject.Network;
 
-import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.IngredientList;
-import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -28,7 +23,7 @@ public interface MealServices {
     @GET("list.php?a=list")
     Call<MealList> listAllByCountry();
     @GET("list.php?i=list")
-    Call<IngredientList> listAllByIngredient();
+    Call<MealList> listAllByIngredient();
     @GET("list.php?c=list")
     Call<MealList> listAllByCategory();
 }

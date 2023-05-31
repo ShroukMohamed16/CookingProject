@@ -13,6 +13,7 @@ public interface RepoInterface {
     void repoDeleteFromFav(Meal meal);
 
     LiveData<List<Meal>> repoGetAllFavMeals();
+    LiveData<List<Meal>> repoGetAllPlanMeals();
 
     void repoDailyInspirationMeals(NetworkDelegate networkDelegate);
 
@@ -31,5 +32,6 @@ public interface RepoInterface {
     void repoFilterByCategory(NetworkDelegate networkDelegate, String category);
 
     void repoFilterByIngredient(NetworkDelegate networkDelegate, String ingredient);
+
 
 }

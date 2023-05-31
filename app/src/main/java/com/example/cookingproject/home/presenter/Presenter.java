@@ -1,9 +1,5 @@
 package com.example.cookingproject.home.presenter;
 
-import android.util.Log;
-
-import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
@@ -49,10 +45,7 @@ public class Presenter implements NetworkDelegate {
         }
     }
 
-    @Override
-    public void onSuccessResponseIngredient(IngredientList ingredientList) {
 
-    }
 
     @Override
     public void onFailureResponse(String errorMsg) {

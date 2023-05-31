@@ -3,6 +3,9 @@ package com.example.cookingproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -37,9 +40,33 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+        ConnectivityManager connectivityManager = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        }
+
+        NetworkCapabilities networkCapabilities = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+        }
+        boolean isWifiConnected = networkCapabilities != null && networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+
+        boolean isMobileDataConnected = networkCapabilities != null && networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
+
+        if (isWifiConnected || isMobileDataConnected ) {
+
+        } else {
+
+            Toast.makeText(this, "Check Network Please", Toast.LENGTH_SHORT).show();
+
+        }
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+
+
+
 
     }
 

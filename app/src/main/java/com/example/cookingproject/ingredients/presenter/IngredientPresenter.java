@@ -1,24 +1,23 @@
-package com.example.cookingproject.categories.presenter;
+package com.example.cookingproject.ingredients.presenter;
 
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.NetworkDelegate;
-import com.example.cookingproject.categories.view.CategoryViewInterface;
+import com.example.cookingproject.ingredients.view.IngredientInterface;
 
 import java.util.List;
 
-public class CategoryPresenter implements NetworkDelegate {
-
-    CategoryViewInterface categoryViewInterface;
+public class IngredientPresenter implements NetworkDelegate {
+    IngredientInterface view;
     Repository repository;
 
-    public CategoryPresenter(CategoryViewInterface categoryViewInterface, Repository repository) {
-        this.categoryViewInterface = categoryViewInterface;
+    public IngredientPresenter(IngredientInterface view, Repository repository) {
+        this.view = view;
         this.repository = repository;
     }
-    public void mealsOfCategory(String CategoryName){
-        repository.repoFilterByCategory(this,CategoryName);
+    public void getMealsByIngredient(String IngredientName){
+        repository.repoFilterByIngredient(this,IngredientName);
     }
     public void addToFav(Meal meal){
         if(!meal.isFavorite()) {
@@ -31,14 +30,14 @@ public class CategoryPresenter implements NetworkDelegate {
     @Override
     public void onSuccessResponse(MealList meals) {
         List<Meal> meal = meals.getMeals();
-        categoryViewInterface.showAllMealsOfCategory(meal);
+        view.showAllMealsOfIngredient(meal);
 
     }
-
-
 
     @Override
     public void onFailureResponse(String errorMsg) {
         System.out.println(errorMsg);
+
+
     }
 }

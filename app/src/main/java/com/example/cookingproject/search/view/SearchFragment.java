@@ -3,7 +3,6 @@ package com.example.cookingproject.search.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,15 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cookingproject.Model.Ingredient;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
-import com.example.cookingproject.home.presenter.Presenter;
-import com.example.cookingproject.home.view.AllCategoryAdapter;
-import com.example.cookingproject.home.view.AllCountryAdapter;
-import com.example.cookingproject.home.view.InspirationAdapter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.search.presenter.SearchPresenter;
 
@@ -72,7 +66,7 @@ public class SearchFragment extends Fragment implements searchViewInterface , on
     }
 
     @Override
-    public void showAllIngredient(List<Ingredient> ingredients) {
+    public void showAllIngredient(List<Meal> ingredients) {
         searchIngredientAdapter.setList(ingredients);
         searchIngredientAdapter.notifyDataSetChanged();
 

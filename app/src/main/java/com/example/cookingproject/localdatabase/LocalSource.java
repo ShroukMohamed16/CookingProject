@@ -11,4 +11,9 @@ public interface LocalSource {
      void insertToFav(Meal meal);
      void deleteFromFav(Meal meal);
      LiveData<List<Meal>> getAllFavMeals();
+     LiveData<List<Meal>> getPlan();
+
+
+
+
 }

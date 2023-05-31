@@ -1,7 +1,5 @@
 package com.example.cookingproject.meals.presenter;
 
-import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
@@ -38,10 +36,7 @@ public class MealPresenter implements NetworkDelegate {
         MealInterface.showMeal(meal);
     }
 
-    @Override
-    public void onSuccessResponseIngredient(IngredientList ingredientList) {
 
-    }
 
     @Override
     public void onFailureResponse(String errorMsg) {

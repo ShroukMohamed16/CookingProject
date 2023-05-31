@@ -1,4 +1,4 @@
-package com.example.cookingproject.countries.view;
+package com.example.cookingproject.ingredients.view;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -17,17 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
+import com.example.cookingproject.categories.view.CategoryFragmentDirections;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>{
+public class IngredientMealsAdapter extends RecyclerView.Adapter<IngredientMealsAdapter.ViewHolder>{
     private Context context;
     private List<Meal> meals;
-    private onClickListenerCountry onClickListener;
+    onClickListner onClickListener;
 
-    public CountryAdapter(Context context, ArrayList<Meal> meals, onClickListenerCountry onClickListener) {
+    public IngredientMealsAdapter(Context context, ArrayList<Meal> meals, onClickListner onClickListener) {
         this.context = context;
         this.meals = meals;
         this.onClickListener = onClickListener;
@@ -35,14 +36,14 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     @NonNull
     @Override
-    public CountryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IngredientMealsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_item,parent,false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CountryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IngredientMealsAdapter.ViewHolder holder, int position) {
         holder.mealName.setText(meals.get(position).getStrMeal());
         Glide.with(context)
                 .load(meals.get(position).getStrMealThumb()).placeholder(R.drawable.ic_launcher_background)
@@ -51,16 +52,15 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CountryFragmentDirections.ActionCountryFragmentToMealFragment action = CountryFragmentDirections.actionCountryFragmentToMealFragment(meals.get(position).getStrMeal());
+                CategoryFragmentDirections.ActionCategoryFragmentToMealFragment action = CategoryFragmentDirections.actionCategoryFragmentToMealFragment(meals.get(position).getStrMeal());
                 Navigation.findNavController(v).navigate(action);
             }
         });
         holder.addToFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 holder.addToFavButton.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
-                onClickListener.onClickAddToFav(meals.get(position));
+                onClickListener.addToFav(meals.get(position));
             }
         });
 
@@ -92,3 +92,4 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     }
 
 }
+

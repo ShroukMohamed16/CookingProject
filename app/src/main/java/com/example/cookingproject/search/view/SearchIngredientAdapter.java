@@ -7,14 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.cookingproject.Model.Ingredient;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
-import com.example.cookingproject.meals.view.IngredientAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +22,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredientAdapter.ViewHolder> {
     private Context context;
-    private List<Ingredient> ingredients ;
+    private List<Meal> meals ;
     onClickListener onClickListener;
 
-    public SearchIngredientAdapter(Context context, ArrayList<Ingredient> ingredients,onClickListener onClickListener) {
+    public SearchIngredientAdapter(Context context, ArrayList<Meal> meals,onClickListener onClickListener) {
         this.context = context;
-        this.ingredients = ingredients;
+        this. meals= meals;
         this.onClickListener = onClickListener;
     }
 
@@ -42,27 +41,38 @@ public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredie
 
     @Override
     public void onBindViewHolder(@NonNull SearchIngredientAdapter.ViewHolder holder, int position) {
-        System.out.println("OKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY");
-        holder.name.setText(ingredients.get(position).getStrIngredient());
-        String name = ingredients.get(position).getStrIngredient();
+        holder.name.setText(meals.get(position).getStrIngredient());
+        String name = meals.get(position).getStrIngredient();
         Glide.with(context).load("https://www.themealdb.com/images/ingredients/"+ name+"-Small.png")
                 .apply(new RequestOptions().override(60,60)
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_foreground)).into(holder.circleImageView);
+        holder.circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SearchFragmentDirections.ActionSearchFragmentToIngredientFragment action = SearchFragmentDirections.actionSearchFragmentToIngredientFragment(meals.get(position).getStrIngredient());
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SearchFragmentDirections.ActionSearchFragmentToIngredientFragment action = SearchFragmentDirections.actionSearchFragmentToIngredientFragment(meals.get(position).getStrIngredient());
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        if(ingredients == null){
-            return 0;
-        }
-        return ingredients.size();
+
+        return meals.size();
     }
 
-    public void setList(List<Ingredient> updateList)
+    public void setList(List<Meal> updateList)
     {
-        this.ingredients = updateList;
+        this.meals = updateList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

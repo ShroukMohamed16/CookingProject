@@ -1,28 +1,36 @@
 package com.example.cookingproject.meals.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.cookingproject.Model.Ingredient;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
-import com.example.cookingproject.Network.RemoteSource;
 import com.example.cookingproject.R;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.meals.presenter.MealPresenter;
@@ -32,7 +40,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -43,8 +50,7 @@ public class MealFragment extends Fragment implements mealViewInterface{
    ArrayList<Ingredient> ingredients = new ArrayList<>();
     IngredientAdapter ingredientAdapter;
     GridLayoutManager layoutManager;
-    ImageButton addToPlane_btn;
-    MaterialButton addToFav_btn;
+    MaterialButton addToFav_btn , addToPlane_btn;
     ImageView imageView;
     MealPresenter mealPresenter;
 
@@ -56,8 +62,9 @@ public class MealFragment extends Fragment implements mealViewInterface{
 
     mealViewInterface mealViewInterface;
     boolean[] checkedDays;
-    List<String> selectedDays;
+    String selectedDay = "Saturday";
     String mealNameItem;
+
 
     public MealFragment() {
         // Required empty public constructor
@@ -76,7 +83,7 @@ public class MealFragment extends Fragment implements mealViewInterface{
         mealCountry=view.findViewById(R.id.itemPageMealCountry);
         mealSteps=view.findViewById(R.id.itemPageMealSteps);
         addToFav_btn=view.findViewById(R.id.add_to_favorite);
-       // addToPlane_btn=view.findViewById(R.id.add_to_calender);
+        addToPlane_btn=view.findViewById(R.id.add_to_calender);
         imageView=view.findViewById(R.id.profileUserImage);
 
         String mealNameItem = MealFragmentArgs.fromBundle(getArguments()).getMealName();
@@ -96,29 +103,29 @@ public class MealFragment extends Fragment implements mealViewInterface{
                 .error(R.drawable.ic_launcher_foreground)
                 .into(imageView);
         if(meal.get(0).getStrIngredient1()!="")
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient1(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient1(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient1()+".png"));
         if(!meal.get(0).getStrIngredient2().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient2(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient2(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient2()+".png"));
         if(!meal.get(0).getStrIngredient3().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient3(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient3(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient3()+".png"));
         if(!meal.get(0).getStrIngredient4().equals(""))
-            ingredients.add(new Ingredient("" ,meal.get(0).getStrIngredient4(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient4(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient4()+".png"));
         if(!meal.get(0).getStrIngredient5().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient5(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient5(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient5()+".png"));
         if(!meal.get(0).getStrIngredient6().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient6(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient6(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient6()+".png"));
         if(!meal.get(0).getStrIngredient7().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient7(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient7(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient7()+".png"));
         if(!meal.get(0).getStrIngredient8().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient8(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient8(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient8()+".png"));
         if(!meal.get(0).getStrIngredient9().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient9(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient9(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient9()+".png"));
         if(!meal.get(0).getStrIngredient10().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient10(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient10(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient10()+".png"));
         if(!meal.get(0).getStrIngredient11().equals(""))
-            ingredients.add(new Ingredient("",meal.get(0).getStrIngredient11(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient11(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient11()+".png"));
         if(!meal.get(0).getStrIngredient12().equals(""))
-           ingredients.add(new Ingredient("",meal.get(0).getStrIngredient12(),"",""));
+            ingredients.add(new Ingredient(meal.get(0).getStrIngredient12(),"https://www.themealdb.com/images/ingredients/"+ meal.get(0).getStrIngredient12()+".png"));
         ingredientAdapter=new IngredientAdapter(getContext(),ingredients);
         ingredientAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(ingredientAdapter);
@@ -152,8 +159,43 @@ public class MealFragment extends Fragment implements mealViewInterface{
                 }
             }
         });
+        addToPlane_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String[] days = {"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("     Select Day   ");
+                builder.setSingleChoiceItems(days, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedDay = days[which];
+                        Meal my_meal = meal.get(0);
+                        my_meal.setNameDay(selectedDay);
+                        mealPresenter.addToFavorite(my_meal);
+                    }
 
+                });
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
+
+
+            }
+        });
     }
+
 
 
 

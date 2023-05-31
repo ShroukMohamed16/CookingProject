@@ -45,6 +45,7 @@
     <string name="search_by_ingredients">Search by Ingredients</string>
     <string name="search_by_category">Search by Category</string>
     <string name="search_by_country">Search By Country</string>
+    <string name="continue_as_guest">Continue as Guest</string>
 
     <string-array name="flags">
         <item>https://www.worldometers.info/img/flags/us-flag.gif</item>

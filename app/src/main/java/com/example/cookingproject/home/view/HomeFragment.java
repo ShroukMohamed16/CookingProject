@@ -11,14 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
-import com.example.cookingproject.categories.view.CategoryAdapter;
-import com.example.cookingproject.categories.view.CategoryFragment;
 import com.example.cookingproject.home.presenter.Presenter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 

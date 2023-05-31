@@ -7,16 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
-import com.example.cookingproject.home.view.HomeFragmentDirections;
-import com.example.cookingproject.home.view.onClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +38,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull IngredientAdapter.ViewHolder holder, int position) {
-        holder.name.setText(ingredient.get(position).getStrIngredient());
-        String name = ingredient.get(position).getStrIngredient();
+        holder.name.setText(ingredient.get(position).getName());
+        String name = ingredient.get(position).getName();
         Glide.with(context).load("https://www.themealdb.com/images/ingredients/"+ name+"-Small.png")
                 .apply(new RequestOptions().override(60,60)
                         .placeholder(R.drawable.ic_launcher_background)

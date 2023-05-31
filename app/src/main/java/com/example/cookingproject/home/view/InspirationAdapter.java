@@ -58,8 +58,9 @@ public class InspirationAdapter extends RecyclerView.Adapter<InspirationAdapter.
         holder.addToFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.addToFavButton.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
-                onClickListener.onClickAddTofav(meals.get(position));
+                   holder.addToFavButton.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
+                    onClickListener.onClickAddTofav(meals.get(position));
+
 
             }
         });

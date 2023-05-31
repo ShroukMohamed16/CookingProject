@@ -2,6 +2,7 @@
 package com.example.cookingproject.Model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,9 +14,11 @@ public class Meal implements Serializable
     @NonNull
     @PrimaryKey
     private String idMeal;
+    @ColumnInfo(name = "isFavorite")
     private boolean isFavorite;
 
     @NonNull
+    @ColumnInfo(name = "day")
     private String nameDay="";
     private String strMeal;
     private String strDrinkAlternate;
@@ -25,6 +28,7 @@ public class Meal implements Serializable
     private String strMealThumb;
     private String strTags;
     private String strYoutube;
+    private String strIngredient;
     private String strIngredient1;
     private String strIngredient2;
     private String strIngredient3;
@@ -107,6 +111,14 @@ public class Meal implements Serializable
 
     public void setStrDrinkAlternate(String strDrinkAlternate) {
         this.strDrinkAlternate = strDrinkAlternate;
+    }
+
+    public String getStrIngredient() {
+        return strIngredient;
+    }
+
+    public void setStrIngredient(String strIngredient) {
+        this.strIngredient = strIngredient;
     }
 
     public String getStrCategory() {

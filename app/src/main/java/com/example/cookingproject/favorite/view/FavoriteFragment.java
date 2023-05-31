@@ -19,8 +19,6 @@ import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
 import com.example.cookingproject.favorite.presenter.FavoritePresenter;
-import com.example.cookingproject.home.presenter.Presenter;
-import com.example.cookingproject.home.view.InspirationAdapter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 
 import java.util.ArrayList;
@@ -72,8 +70,10 @@ public class FavoriteFragment extends Fragment implements FavoriteViewInterface,
         meals.observe(this, new Observer<List<Meal>>() {
             @Override
             public void onChanged(List<Meal> mealLive) {
-                favoriteAdapter.setList(mealLive);
-                favMealsRecyclerView.setAdapter(favoriteAdapter);
+                for(int i = 0 ; i<mealLive.size();i++) {
+                    favoriteAdapter.setList(mealLive);
+                    favMealsRecyclerView.setAdapter(favoriteAdapter);
+                }
             }
         });
 

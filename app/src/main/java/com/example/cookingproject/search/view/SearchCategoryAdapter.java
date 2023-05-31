@@ -16,12 +16,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
-import com.example.cookingproject.home.view.HomeFragmentDirections;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAdapter.ViewHolder>{
     private Context context;

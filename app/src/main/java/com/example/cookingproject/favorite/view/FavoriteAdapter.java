@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +49,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                 .load(meals.get(position).getStrMealThumb()).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.meal_img);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteFragmentDirections.ActionFavoriteFragmentToMealFragment action = FavoriteFragmentDirections.actionFavoriteFragmentToMealFragment(meals.get(position).getStrMeal());
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
 
         holder.deleteFromFavButton.setOnClickListener(new View.OnClickListener() {
             @Override

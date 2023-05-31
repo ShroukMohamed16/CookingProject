@@ -2,11 +2,7 @@ package com.example.cookingproject.favorite.presenter;
 
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
-import com.example.cookingproject.Network.NetworkDelegate;
 import com.example.cookingproject.favorite.view.FavoriteViewInterface;
-
-
-import java.util.List;
 
 public class FavoritePresenter{
 

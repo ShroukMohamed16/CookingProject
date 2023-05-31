@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,13 +16,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
-import com.example.cookingproject.home.view.HomeFragmentDirections;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchCountryAdapter extends RecyclerView.Adapter<SearchCountryAdapter.ViewHolder>{
     private Context context;

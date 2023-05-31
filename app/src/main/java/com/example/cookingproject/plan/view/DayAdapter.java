@@ -1,7 +1,6 @@
-package com.example.cookingproject.countries.view;
+package com.example.cookingproject.plan.view;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,50 +16,52 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
+import com.example.cookingproject.R.drawable;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>{
+public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder>{
     private Context context;
     private List<Meal> meals;
-    private onClickListenerCountry onClickListener;
+    private onClickListenerPlan onClickListner;
 
-    public CountryAdapter(Context context, ArrayList<Meal> meals, onClickListenerCountry onClickListener) {
+    public DayAdapter(Context context, ArrayList<Meal> meals, onClickListenerPlan onClickListner) {
         this.context = context;
         this.meals = meals;
-        this.onClickListener = onClickListener;
+        this.onClickListner = onClickListner;
     }
 
     @NonNull
     @Override
-    public CountryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_item,parent,false);
-        ViewHolder viewHolder = new ViewHolder(v);
+        DayAdapter.ViewHolder viewHolder = new DayAdapter.ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CountryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DayAdapter.ViewHolder holder, int position) {
         holder.mealName.setText(meals.get(position).getStrMeal());
         Glide.with(context)
-                .load(meals.get(position).getStrMealThumb()).placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
+                .load(meals.get(position).getStrMealThumb()).placeholder(drawable.ic_launcher_background)
+                .error(drawable.ic_launcher_foreground)
                 .into(holder.meal_img);
+
+        holder.deleteFromFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListner.onClick(meals.get(position));
+
+            }
+        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CountryFragmentDirections.ActionCountryFragmentToMealFragment action = CountryFragmentDirections.actionCountryFragmentToMealFragment(meals.get(position).getStrMeal());
+                PlanFragmentDirections.ActionPlanFragmentToMealFragment action = PlanFragmentDirections.actionPlanFragmentToMealFragment(meals.get(position).getStrMeal());
                 Navigation.findNavController(v).navigate(action);
-            }
-        });
-        holder.addToFavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
 
-            public void onClick(View v) {
-                holder.addToFavButton.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
-                onClickListener.onClickAddToFav(meals.get(position));
             }
         });
 
@@ -71,23 +72,29 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         return meals.size();
     }
 
-    public void setList(List<Meal> updateList)
+    public  void setList(List<Meal> updateList)
     {
         this.meals = updateList;
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
         TextView mealName;
-        MaterialButton addToFavButton;
+        MaterialButton deleteFromFavButton;
         ImageView meal_img;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.meal_card);
             mealName = itemView.findViewById(R.id.meal_name);
-            addToFavButton = itemView.findViewById(R.id.addToFavButton);
+            deleteFromFavButton = itemView.findViewById(R.id.addToFavButton);
             meal_img = itemView.findViewById(R.id.meal_img);
+            deleteFromFavButton.setText("Delete From Plan");
+            deleteFromFavButton.setIcon(ContextCompat.getDrawable(context, drawable.trash_full));
+
+
         }
     }
 

@@ -4,11 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.MealList;
-
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -107,15 +103,15 @@ public class MealClient implements RemoteSource{
 
     @Override
     public void enqueueCallListAllByIngredient(NetworkDelegate networkDelegate) {
-        Call<IngredientList> call = mealServices.listAllByIngredient();
-        call.enqueue(new Callback<IngredientList>() {
+        Call<MealList> call = mealServices.listAllByIngredient();
+        call.enqueue(new Callback<MealList>() {
             @Override
-            public void onResponse(@NonNull Call<IngredientList> call, @NonNull Response<IngredientList> response) {
-                networkDelegate.onSuccessResponseIngredient(response.body());
+            public void onResponse(@NonNull Call<MealList> call, @NonNull Response<MealList> response) {
+                networkDelegate.onSuccessResponse(response.body());
 
             }
             @Override
-            public void onFailure(@NonNull Call<IngredientList> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<MealList> call, @NonNull Throwable t) {
                 networkDelegate.onFailureResponse(t.getLocalizedMessage());
             }
         });

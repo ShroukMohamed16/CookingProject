@@ -47,6 +47,11 @@ public class Repository implements RepoInterface{
     }
 
     @Override
+    public LiveData<List<Meal>> repoGetAllPlanMeals() {
+         return localSource.getPlan();
+    }
+
+    @Override
     public void repoDailyInspirationMeals(NetworkDelegate networkDelegate) {
            remoteSource.enqueueCallDailyInspirationMeals(networkDelegate);
     }

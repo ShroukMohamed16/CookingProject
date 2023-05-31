@@ -1,12 +1,9 @@
 package com.example.cookingproject.countries.presenter;
 
-import com.example.cookingproject.Model.Ingredient;
-import com.example.cookingproject.Model.IngredientList;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.MealList;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.NetworkDelegate;
-import com.example.cookingproject.categories.view.CategoryViewInterface;
 import com.example.cookingproject.countries.view.CountryViewInterface;
 
 import java.util.List;
@@ -38,10 +35,7 @@ public class CountryPresenter implements NetworkDelegate {
 
     }
 
-    @Override
-    public void onSuccessResponseIngredient(IngredientList ingredientList) {
 
-    }
 
     @Override
     public void onFailureResponse(String errorMsg) {

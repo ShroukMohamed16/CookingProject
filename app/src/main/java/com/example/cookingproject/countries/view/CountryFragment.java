@@ -15,9 +15,6 @@ import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
-import com.example.cookingproject.categories.presenter.CategoryPresenter;
-import com.example.cookingproject.categories.view.CategoryAdapter;
-import com.example.cookingproject.categories.view.CategoryFragmentArgs;
 import com.example.cookingproject.countries.presenter.CountryPresenter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 

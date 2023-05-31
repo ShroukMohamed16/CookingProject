@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface MealDAO {
 
-    @Query("select * from meals")
+    @Query("select * from meals where isFavorite = 1 ")
     public LiveData<List<Meal>> getAllFavouriteMeals();
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
@@ -22,6 +22,16 @@ public interface MealDAO {
 
     @Delete
     public void deleteFromFavourite(Meal meal);
+
+   @Query("select * from meals where day != '' or day != null ")
+    public LiveData<List<Meal>> getPlanMeals();
+
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    public void insertToPlan(Meal meal);
+
+    @Delete
+    public void deleteFromPlan(Meal meal);
+
 
 
 }
