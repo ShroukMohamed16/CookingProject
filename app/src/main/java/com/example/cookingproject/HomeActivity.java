@@ -36,15 +36,14 @@ import java.util.Objects;
 public class HomeActivity extends AppCompatActivity {
 
     public BottomNavigationView bottomNavigationView;
-    NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         if (checkConnectivity() == false) {
             FavoriteFragment fragment = new FavoriteFragment();
             fragment.setArguments(new Bundle());
@@ -58,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             menuItem3.setEnabled(false);
 
         }
-            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
 
