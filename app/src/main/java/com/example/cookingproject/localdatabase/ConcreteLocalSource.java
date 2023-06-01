@@ -65,7 +65,13 @@ public class ConcreteLocalSource implements LocalSource{
 
     @Override
     public void DeleteData() {
-        Log.i("TAG", "DeleteData: ");
-        mealDAO.clearRoom();
+        Log.i("TAG", "DeleteData: from concerete");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealDAO.clearRoom();
+            }
+        }).start();
     }
 }

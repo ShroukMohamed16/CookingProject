@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (password.length() < 6) {
+                if (password.length() < 6 && password.length()<10) {
                     Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                     return;
 

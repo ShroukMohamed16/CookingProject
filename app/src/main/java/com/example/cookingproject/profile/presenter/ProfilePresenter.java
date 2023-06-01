@@ -16,7 +16,7 @@ public class ProfilePresenter {
         this.repository = repository;
     }
     public void clear(){
-        Log.i("TAG", "clear: ");
+        Log.i("TAG", "clear:from presenter ");
         repository.repoDeleteRoom();
     }
 }

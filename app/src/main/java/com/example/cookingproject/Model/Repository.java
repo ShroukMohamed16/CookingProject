@@ -44,7 +44,7 @@ public class Repository implements RepoInterface{
 
     @Override
     public void repoDeleteRoom() {
-        Log.i("TAG", "repoDeleteRoom: ");
+        Log.i("TAG", "repoDeleteRoom: from repo ");
         localSource.DeleteData();
     }
 

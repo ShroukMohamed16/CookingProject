@@ -97,6 +97,7 @@ public class ProfileFragment extends Fragment {
                 signOut();
                 presenter.clear();
 
+
             }
         });
     }
