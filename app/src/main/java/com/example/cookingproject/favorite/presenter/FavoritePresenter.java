@@ -46,21 +46,24 @@ public class FavoritePresenter{
 
     }
   public void uploadMeal(Meal meal) {
-        meal.setIdMeal(String.valueOf(System.currentTimeMillis()));
-        meal.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        firebaseFirestore.collection("Meal Details")
-                .document(meal.getIdMeal()).set(meal)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            System.out.println("Success");
-                        } else {
-                            String errorMessage = task.getException().getLocalizedMessage();
-                            System.out.println(errorMessage);
+        if(!meal.isFavorite()){
+            meal.setFavorite(true);
+            meal.setIdMeal(String.valueOf(System.currentTimeMillis()));
+            meal.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            firebaseFirestore.collection("Meal Details")
+                    .document(meal.getIdMeal()).set(meal)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                System.out.println("Success");
+                            } else {
+                                String errorMessage = task.getException().getLocalizedMessage();
+                                System.out.println(errorMessage);
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
     public void getMealsFromFirebase() {
         Query query = MealRef.whereEqualTo("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -84,6 +87,7 @@ public class FavoritePresenter{
         }
     public void deleteFromFirebase(Meal meal){
         Query Query = MealRef.whereEqualTo("idMeal", meal.getIdMeal());
+        meal.setFavorite(false);
         Query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
