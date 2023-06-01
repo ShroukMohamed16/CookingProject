@@ -1,6 +1,7 @@
 package com.example.cookingproject.Model;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -39,6 +40,12 @@ public class Repository implements RepoInterface{
     public void repoDeleteFromFav(Meal meal) {
         localSource.deleteFromFav(meal);
 
+    }
+
+    @Override
+    public void repoDeleteRoom() {
+        Log.i("TAG", "repoDeleteRoom: ");
+        localSource.DeleteData();
     }
 
     @Override

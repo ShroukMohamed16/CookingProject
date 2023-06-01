@@ -1,4 +1,4 @@
-package com.example.cookingproject;
+package com.example.cookingproject.profile.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cookingproject.HomeActivity;
+import com.example.cookingproject.LoginActivity;
+import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Model.UserData;
+import com.example.cookingproject.Network.MealClient;
+import com.example.cookingproject.R;
+import com.example.cookingproject.localdatabase.ConcreteLocalSource;
+import com.example.cookingproject.profile.presenter.ProfilePresenter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -37,6 +44,7 @@ public class ProfileFragment extends Fragment {
     LinearLayout planLinear;
     private FirebaseAuth mAuth;
     FirebaseFirestore firebaseFirestore;
+    ProfilePresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,7 @@ public class ProfileFragment extends Fragment {
         logoutLinear = view.findViewById(R.id.logout_linear);
         favouriteLinear = view.findViewById(R.id.favorite_linear);
         planLinear = view.findViewById(R.id.plan_linear);
+        presenter = new ProfilePresenter(Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         getUserData();
         return view;
 
@@ -79,10 +88,14 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 signOut();
+                presenter.clear();
 
             }
         });

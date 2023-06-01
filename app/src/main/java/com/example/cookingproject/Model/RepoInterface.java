@@ -11,9 +11,11 @@ public interface RepoInterface {
     void repoInsertToFav(Meal meal);
 
     void repoDeleteFromFav(Meal meal);
+    void repoDeleteRoom();
 
     LiveData<List<Meal>> repoGetAllFavMeals();
     LiveData<List<Meal>> repoGetAllPlanMeals();
+
 
     void repoDailyInspirationMeals(NetworkDelegate networkDelegate);
 

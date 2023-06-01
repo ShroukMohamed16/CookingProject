@@ -1,5 +1,8 @@
 package com.example.cookingproject.favorite.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -58,8 +61,16 @@ public class FavoriteFragment extends Fragment implements FavoriteViewInterface,
         favMealsRecyclerView.setAdapter(favoriteAdapter);
         favMealsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         presenter = new FavoritePresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
-        presenter.getMealsFromFirebase();
-       // presenter.getFavMeals();
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+            presenter.getMealsFromFirebase();
+        } else {
+            presenter.getFavMeals();
+        }
+
+
+
 
         return view;
     }
@@ -97,6 +108,7 @@ public class FavoriteFragment extends Fragment implements FavoriteViewInterface,
     @Override
     public void deleteMeal(Meal meal) {
         presenter.deleteFromFav(meal);
+        presenter.deleteFromFirebase(meal);
     }
 
     @Override

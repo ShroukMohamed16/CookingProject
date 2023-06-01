@@ -32,6 +32,9 @@ public interface MealDAO {
     @Delete
     public void deleteFromPlan(Meal meal);
 
+    @Query("DELETE FROM meals")
+    void clearRoom();
+
 
 
 }

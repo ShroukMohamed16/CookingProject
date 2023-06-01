@@ -42,7 +42,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+
         if (checkConnectivity() == false) {
             FavoriteFragment fragment = new FavoriteFragment();
             fragment.setArguments(new Bundle());
@@ -55,10 +57,10 @@ public class HomeActivity extends AppCompatActivity {
             menuItem2.setEnabled(false);
             menuItem3.setEnabled(false);
 
-        } else {
+        }
             navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
-        }
+
 
 
 

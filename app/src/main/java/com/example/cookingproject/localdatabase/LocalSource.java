@@ -12,6 +12,7 @@ public interface LocalSource {
      void deleteFromFav(Meal meal);
      LiveData<List<Meal>> getAllFavMeals();
      LiveData<List<Meal>> getPlan();
+     void DeleteData();
 
 
 

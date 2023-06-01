@@ -1,5 +1,8 @@
 package com.example.cookingproject.plan.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +28,7 @@ import com.example.cookingproject.favorite.view.FavoriteAdapter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.plan.presenter.PlanPresenter;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +59,9 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
+            addPlan.setVisibility(View.INVISIBLE);
+        }
         View view  = inflater.inflate(R.layout.fragment_plan, container, false);
 
         saturdayRecyclerView = view.findViewById(R.id.saturday_rv);
@@ -98,8 +105,17 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
         fridayRecyclerView.setAdapter(fridayAdapter);
 
         presenter = new PlanPresenter(this ,  Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
-        presenter.getMealsFromFirebase();
-        //presenter.getPlanMeals();
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+            presenter.getMealsFromFirebase();
+        } else {
+            presenter.getPlanMeals();
+
+        }
+
+
 
 
         return view;
@@ -119,6 +135,7 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     @Override
     public void onClick(Meal meal) {
         deleteMealFromPlan(meal);
+
         saturdayAdapter.notifyDataSetChanged();
         sundayAdapter.notifyDataSetChanged();
         mondayAdapter.notifyDataSetChanged();
@@ -194,6 +211,7 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     @Override
     public void deleteMealFromPlan(Meal meal) {
         presenter.deleteFromFav(meal);
+        presenter.deleteFromFirebase(meal);
 
     }
 

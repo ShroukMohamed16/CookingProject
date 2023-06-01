@@ -1,6 +1,7 @@
 package com.example.cookingproject.localdatabase;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -60,5 +61,11 @@ public class ConcreteLocalSource implements LocalSource{
     @Override
     public LiveData<List<Meal>> getPlan() {
         return allPlan;
+    }
+
+    @Override
+    public void DeleteData() {
+        Log.i("TAG", "DeleteData: ");
+        mealDAO.clearRoom();
     }
 }

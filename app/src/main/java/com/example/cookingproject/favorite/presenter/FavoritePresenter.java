@@ -10,13 +10,17 @@ import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.favorite.view.FavoriteViewInterface;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,5 +82,36 @@ public class FavoritePresenter{
             }
         });
         }
-
+    public void deleteFromFirebase(Meal meal){
+        Query Query = MealRef.whereEqualTo("idMeal", meal.getIdMeal());
+        Query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                WriteBatch batch = firebaseFirestore.batch();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    batch.delete(documentSnapshot.getReference());
+                }
+                batch.commit().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("MyApp", "Documents deleted successfully");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("MyApp", "Error deleting documents", e);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle any errors
+            }
+        });
     }
+
+
+
+
+}

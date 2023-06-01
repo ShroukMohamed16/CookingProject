@@ -108,6 +108,7 @@ public class MealFragment extends Fragment implements mealViewInterface{
     public void showMeal(List<Meal> meal) {
         if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
             addToFav_btn.setVisibility(View.INVISIBLE);
+            addToPlane_btn.setVisibility(View.INVISIBLE);
         }
         mealName.setText(meal.get(0).getStrMeal());
         mealSteps.setText(meal.get(0).getStrInstructions());
