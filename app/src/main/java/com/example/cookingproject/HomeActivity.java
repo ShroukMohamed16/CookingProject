@@ -7,6 +7,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import java.util.Objects;
@@ -33,44 +35,44 @@ import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-
+    public BottomNavigationView bottomNavigationView;
+    NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-        ConnectivityManager connectivityManager = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        }
-
-        NetworkCapabilities networkCapabilities = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-        }
-        boolean isWifiConnected = networkCapabilities != null && networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-
-        boolean isMobileDataConnected = networkCapabilities != null && networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-
-        if (isWifiConnected || isMobileDataConnected ) {
+        if (checkConnectivity() == false) {
+            FavoriteFragment fragment = new FavoriteFragment();
+            fragment.setArguments(new Bundle());
+            navController.navigate(R.id.favoriteFragment);
+            Menu menu = bottomNavigationView.getMenu();
+            MenuItem menuItem = menu.findItem(R.id.homeFragment);
+            MenuItem menuItem2 = menu.findItem(R.id.searchFragment);
+            MenuItem menuItem3 = menu.findItem(R.id.profileFragment);
+            menuItem.setEnabled(false);
+            menuItem2.setEnabled(false);
+            menuItem3.setEnabled(false);
 
         } else {
-
-            Toast.makeText(this, "Check Network Please", Toast.LENGTH_SHORT).show();
-
+            navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
-        NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView,navController);
-
 
 
 
     }
 
-
+    private boolean checkConnectivity(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkCapabilities networkCapabilities = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+        }
+        boolean isConnected = networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        return isConnected;
+    }
 
 
 

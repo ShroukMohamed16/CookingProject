@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -41,7 +42,11 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     LinearLayoutManager linearLayoutManager;
 
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.VISIBLE);
+    }
 
     public PlanFragment() {
         // Required empty public constructor
@@ -93,7 +98,8 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
         fridayRecyclerView.setAdapter(fridayAdapter);
 
         presenter = new PlanPresenter(this ,  Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
-        presenter.getPlanMeals();
+        presenter.getMealsFromFirebase();
+        //presenter.getPlanMeals();
 
 
         return view;
@@ -127,6 +133,7 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
         meals.observe(this, new Observer<List<Meal>>() {
             @Override
             public void onChanged(List<Meal> mealLive) {
+
                 ArrayList<Meal> saturdayMeals = new ArrayList<>();
                 ArrayList<Meal> sundayMeals = new ArrayList<>();
                 ArrayList<Meal> mondayMeals = new ArrayList<>();
@@ -187,6 +194,65 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     @Override
     public void deleteMealFromPlan(Meal meal) {
         presenter.deleteFromFav(meal);
+
+    }
+
+    @Override
+    public void showPlansFromFirebase(List<Meal> planMeals) {
+
+        ArrayList<Meal> saturdayMeals = new ArrayList<>();
+        ArrayList<Meal> sundayMeals = new ArrayList<>();
+        ArrayList<Meal> mondayMeals = new ArrayList<>();
+        ArrayList<Meal> tuesdayMeals = new ArrayList<>();
+        ArrayList<Meal> wednesdayMeals = new ArrayList<>();
+        ArrayList<Meal> thursdayMeals = new ArrayList<>();
+        ArrayList<Meal> fridayMeals = new ArrayList<>();
+        for(int i = 0 ; i < planMeals.size();i++){
+            System.out.println(planMeals.get(i).getNameDay());
+            if(planMeals.get(i).getNameDay().equals("Saturday"))
+                saturdayMeals.add(planMeals.get(i));
+            else if(planMeals.get(i).getNameDay().equals("Sunday"))
+                sundayMeals.add(planMeals.get(i));
+            else if(planMeals.get(i).getNameDay().equals("Monday"))
+                mondayMeals.add(planMeals.get(i));
+            else if(planMeals.get(i).getNameDay().equals("Tuesday"))
+                tuesdayMeals.add(planMeals.get(i));
+            else if(planMeals.get(i).getNameDay().equals("Wednesday"))
+                wednesdayMeals.add(planMeals.get(i));
+            else if(planMeals.get(i).getNameDay().equals("Thursday"))
+                thursdayMeals.add(planMeals.get(i));
+            else
+                fridayMeals.add(planMeals.get(i));
+        }
+        saturdayAdapter.setList(saturdayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        saturdayRecyclerView.setAdapter(saturdayAdapter);
+
+        sundayAdapter.setList(sundayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        sundayRecyclerView.setAdapter(sundayAdapter);
+
+        mondayAdapter.setList(mondayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        mondayRecyclerView.setAdapter(mondayAdapter);
+
+        tuesdayAdapter.setList(tuesdayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        thursdayRecyclerView.setAdapter(tuesdayAdapter);
+
+        wednesdayAdapter.setList(wednesdayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        wednesdayRecyclerView.setAdapter(wednesdayAdapter);
+
+        thursdayAdapter.setList(thursdayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        thursdayRecyclerView.setAdapter(thursdayAdapter);
+
+        fridayAdapter.setList(fridayMeals);
+        saturdayAdapter.notifyDataSetChanged();
+        fridayRecyclerView.setAdapter(fridayAdapter);
+
+
 
     }
 }

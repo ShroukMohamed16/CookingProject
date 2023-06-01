@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -60,6 +61,11 @@ public class CategoryFragment extends Fragment implements CategoryViewInterface,
         categoryPresenter.mealsOfCategory(category_name);
         return view;
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.GONE);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -70,12 +76,18 @@ public class CategoryFragment extends Fragment implements CategoryViewInterface,
     @Override
     public void onClickAddToFav(Meal meal) {
         categoryPresenter.addToFav(meal);
+        categoryPresenter.uploadMeal(meal);
     }
 
     @Override
     public void showAllMealsOfCategory(List<Meal> meals) {
         categoryAdapter.setList(meals);
         categoryAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void showFromFirebase(List<Meal> favMeals) {
 
     }
 }

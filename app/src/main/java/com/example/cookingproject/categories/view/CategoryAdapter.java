@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 Navigation.findNavController(v).navigate(action);
             }
         });
+        if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
+            holder.addToFavButton.setVisibility(View.INVISIBLE);
+        }
         holder.addToFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

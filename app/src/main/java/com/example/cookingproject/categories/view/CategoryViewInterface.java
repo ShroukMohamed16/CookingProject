@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CategoryViewInterface {
     void showAllMealsOfCategory(List<Meal> meals);
+    void showFromFirebase(List<Meal> favMeals);
 }

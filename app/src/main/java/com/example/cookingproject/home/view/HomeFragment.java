@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -66,13 +67,14 @@ public class HomeFragment extends Fragment implements HomeViewInterface,onClickL
         return view;
 
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.VISIBLE);
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
     }
 
     @Override
@@ -98,6 +100,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface,onClickL
     @Override
     public void onClickAddTofav(Meal meal) {
         presenter.addToFav(meal);
-
+        presenter.uploadMeal(meal);
     }
 }

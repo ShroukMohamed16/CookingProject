@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -32,7 +33,11 @@ public class CountryFragment extends Fragment implements onClickListenerCountry 
         // Required empty public constructor
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.GONE);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +65,7 @@ public class CountryFragment extends Fragment implements onClickListenerCountry 
     @Override
     public void onClickAddToFav(Meal meal) {
         countryPresenter.addToFav(meal);
+        countryPresenter.uploadMeal(meal);
 
     }
 }

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface FavoriteViewInterface {
     void showFavMeals(LiveData<List<Meal>> meals);
+    void showFromFirebase(List<Meal> mealList);
     void deleteMeal(Meal meal);
 }

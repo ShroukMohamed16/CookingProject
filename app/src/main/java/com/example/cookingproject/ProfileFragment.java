@@ -55,6 +55,12 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         favouriteLinear.setOnClickListener(new View.OnClickListener() {
@@ -92,32 +98,33 @@ public class ProfileFragment extends Fragment {
     }
 
     public void getUserData() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-        if (account != null) {
-            String displayName = account.getDisplayName();
-            nameTextView.setText(displayName);
-
-
-        } else {
-            // The user is not signed in with a Google account
-            firebaseFirestore.collection("Users")
-                    .document(mAuth.getCurrentUser().getUid())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                UserData userData = task.getResult().toObject(UserData.class);
-                                System.out.println(userData.getUsername());
-                                nameTextView.setText(userData.getUsername());
-
-                            } else {
-                                String errorMessage = Objects.requireNonNull(task.getException()).getLocalizedMessage();
-                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+        if (FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
+            nameTextView.setText("Guest");
         }
+        else if (FirebaseAuth.getInstance().getCurrentUser() != null && !FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
+            if(FirebaseAuth.getInstance().getCurrentUser().getProviderData().get(1).getProviderId().equals("google.com")){
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+                String displayName = account.getDisplayName();
+                nameTextView.setText(displayName);
+            } else {
+                firebaseFirestore.collection("Users")
+                        .document(mAuth.getCurrentUser().getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    UserData userData = task.getResult().toObject(UserData.class);
+                                    System.out.println(userData.getUsername());
+                                    nameTextView.setText(userData.getUsername());
 
+                                } else {
+                                    String errorMessage = Objects.requireNonNull(task.getException()).getLocalizedMessage();
+                                    Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        }
     }
 }

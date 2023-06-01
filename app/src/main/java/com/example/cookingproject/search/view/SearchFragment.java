@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -64,7 +65,11 @@ public class SearchFragment extends Fragment implements searchViewInterface , on
         return view;
 
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.VISIBLE);
+    }
     @Override
     public void showAllIngredient(List<Meal> ingredients) {
         searchIngredientAdapter.setList(ingredients);

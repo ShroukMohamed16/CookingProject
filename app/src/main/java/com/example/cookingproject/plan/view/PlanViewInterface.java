@@ -10,4 +10,6 @@ public interface PlanViewInterface {
 
     void showPlanMeals(LiveData<List<Meal>> meals);
     void deleteMealFromPlan(Meal meal);
+
+    void showPlansFromFirebase(List<Meal> planMeals);
 }

@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Ingredient;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
@@ -35,10 +36,15 @@ import com.example.cookingproject.R;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.meals.presenter.MealPresenter;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,9 +71,13 @@ public class MealFragment extends Fragment implements mealViewInterface{
     String selectedDay = "Saturday";
     String mealNameItem;
 
-
     public MealFragment() {
         // Required empty public constructor
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.GONE);
     }
 
 
@@ -96,6 +106,9 @@ public class MealFragment extends Fragment implements mealViewInterface{
 
     @Override
     public void showMeal(List<Meal> meal) {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
+            addToFav_btn.setVisibility(View.INVISIBLE);
+        }
         mealName.setText(meal.get(0).getStrMeal());
         mealSteps.setText(meal.get(0).getStrInstructions());
         Glide.with(this)
@@ -156,6 +169,7 @@ public class MealFragment extends Fragment implements mealViewInterface{
                 if(!my_meal.isFavorite()){
                     my_meal.setFavorite(true);
                     mealPresenter.addToFavorite(my_meal);
+                    mealPresenter.uploadMeal(my_meal);
                 }
             }
         });
@@ -172,6 +186,8 @@ public class MealFragment extends Fragment implements mealViewInterface{
                         Meal my_meal = meal.get(0);
                         my_meal.setNameDay(selectedDay);
                         mealPresenter.addToFavorite(my_meal);
+                        mealPresenter.uploadPlan(my_meal);
+
                     }
 
                 });

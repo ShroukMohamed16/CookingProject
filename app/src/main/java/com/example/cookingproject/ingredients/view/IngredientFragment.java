@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cookingproject.HomeActivity;
 import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
@@ -35,7 +36,11 @@ public class IngredientFragment extends Fragment implements onClickListner,Ingre
     public IngredientFragment(){
 
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((HomeActivity) requireActivity()).bottomNavigationView.setVisibility(View.GONE);
+    }
 
 
     @Override
@@ -64,6 +69,7 @@ public class IngredientFragment extends Fragment implements onClickListner,Ingre
     @Override
     public void addToFav(Meal meal) {
         ingredientPresenter.addToFav(meal);
+        ingredientPresenter.uploadMeal(meal);
 
     }
 }

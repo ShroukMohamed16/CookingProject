@@ -16,6 +16,8 @@ public class Meal implements Serializable
     private String idMeal;
     @ColumnInfo(name = "isFavorite")
     private boolean isFavorite;
+    @ColumnInfo(name="uid")
+    private String uid;
 
     @NonNull
     @ColumnInfo(name = "day")
@@ -71,8 +73,16 @@ public class Meal implements Serializable
     private String strMeasure20;
 
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     @NonNull
+
     public String getIdMeal() {
         return idMeal;
     }
