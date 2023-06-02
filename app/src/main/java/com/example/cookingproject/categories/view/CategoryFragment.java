@@ -57,7 +57,7 @@ public class CategoryFragment extends Fragment implements CategoryViewInterface,
         recyclerView.setAdapter(categoryAdapter);
          category_name = CategoryFragmentArgs.fromBundle(getArguments()).getCategoryName();
         category.setText(category_name);
-        categoryPresenter = new CategoryPresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        categoryPresenter = new CategoryPresenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         categoryPresenter.mealsOfCategory(category_name);
         return view;
     }

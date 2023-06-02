@@ -51,7 +51,7 @@ public class CountryFragment extends Fragment implements onClickListenerCountry 
         recyclerView.setAdapter(countryAdapter);
         String country_name = CountryFragmentArgs.fromBundle(getArguments()).getCountryName();
         country.setText(country_name);
-        countryPresenter = new CountryPresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        countryPresenter = new CountryPresenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         countryPresenter.mealsOfCountry(country_name);
         return view;
     }

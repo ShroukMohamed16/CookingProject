@@ -2,28 +2,19 @@ package com.example.cookingproject.meals.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -37,14 +28,10 @@ import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.meals.presenter.MealPresenter;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +84,7 @@ public class MealFragment extends Fragment implements mealViewInterface{
         imageView=view.findViewById(R.id.profileUserImage);
 
         String mealNameItem = MealFragmentArgs.fromBundle(getArguments()).getMealName();
-        mealPresenter=new MealPresenter(this, Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        mealPresenter=new MealPresenter(this, Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         mealPresenter.getMealItem(mealNameItem);
         layoutManager=new GridLayoutManager(getContext(),3);
 

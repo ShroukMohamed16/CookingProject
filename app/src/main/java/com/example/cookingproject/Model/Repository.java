@@ -13,19 +13,18 @@ import java.util.List;
 
 public class Repository implements RepoInterface{
     private static Repository instance = null;
-    private Context context;
     LocalSource localSource;
     RemoteSource remoteSource;
 
-    public Repository(Context context, LocalSource localSource, RemoteSource remoteSource) {
-        this.context = context;
+    public Repository(LocalSource localSource, RemoteSource remoteSource) {
+
         this.localSource = localSource;
         this.remoteSource = remoteSource;
     }
 
-    public static Repository getInstance(Context context, LocalSource localSource, RemoteSource remoteSource) {
+    public static Repository getInstance(LocalSource localSource, RemoteSource remoteSource) {
         if(instance == null){
-            instance = new Repository(context,localSource,remoteSource);
+            instance = new Repository(localSource,remoteSource);
         }
         return instance;
     }

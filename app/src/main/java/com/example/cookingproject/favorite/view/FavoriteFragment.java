@@ -60,7 +60,7 @@ public class FavoriteFragment extends Fragment implements FavoriteViewInterface,
         favoriteAdapter = new FavoriteAdapter(getContext(),new ArrayList<>(),this);
         favMealsRecyclerView.setAdapter(favoriteAdapter);
         favMealsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        presenter = new FavoritePresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        presenter = new FavoritePresenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {

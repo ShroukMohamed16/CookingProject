@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment implements HomeViewInterface,onClickL
         countryRecyclerView.setAdapter(allCountryAdapter);
         countryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        presenter = new Presenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        presenter = new Presenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         presenter.getDailyMeals();
         presenter.getAllCategory();
         presenter.getAllCountry();

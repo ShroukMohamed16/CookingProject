@@ -23,15 +23,12 @@ import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
-import com.example.cookingproject.favorite.presenter.FavoritePresenter;
-import com.example.cookingproject.favorite.view.FavoriteAdapter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.plan.presenter.PlanPresenter;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -59,9 +56,7 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
-            addPlan.setVisibility(View.INVISIBLE);
-        }
+
         View view  = inflater.inflate(R.layout.fragment_plan, container, false);
 
         saturdayRecyclerView = view.findViewById(R.id.saturday_rv);
@@ -73,6 +68,9 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
         fridayRecyclerView = view.findViewById(R.id.friday_rv);
         addPlan = view.findViewById(R.id.btn_addToPlan);
 
+        if(FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous()){
+            addPlan.setVisibility(View.INVISIBLE);
+        }
 
         saturdayAdapter = new DayAdapter(getContext(),new ArrayList<>(),this);
         sundayAdapter = new DayAdapter(getContext(),new ArrayList<>(),this);
@@ -104,7 +102,7 @@ public class PlanFragment extends Fragment implements onClickListenerPlan , Plan
         fridayRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         fridayRecyclerView.setAdapter(fridayAdapter);
 
-        presenter = new PlanPresenter(this ,  Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        presenter = new PlanPresenter(this ,  Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

@@ -16,9 +16,6 @@ import com.example.cookingproject.Model.Meal;
 import com.example.cookingproject.Model.Repository;
 import com.example.cookingproject.Network.MealClient;
 import com.example.cookingproject.R;
-import com.example.cookingproject.categories.presenter.CategoryPresenter;
-import com.example.cookingproject.categories.view.CategoryAdapter;
-import com.example.cookingproject.categories.view.CategoryFragmentArgs;
 import com.example.cookingproject.ingredients.presenter.IngredientPresenter;
 import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 
@@ -54,7 +51,7 @@ public class IngredientFragment extends Fragment implements onClickListner,Ingre
         recyclerView.setAdapter(ingredientMealsAdapter);
         ingredient_name = IngredientFragmentArgs.fromBundle(getArguments()).getIngredientName();
         ingredient.setText(ingredient_name);
-        ingredientPresenter = new IngredientPresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        ingredientPresenter = new IngredientPresenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         ingredientPresenter.getMealsByIngredient(ingredient_name);
         return view;
     }

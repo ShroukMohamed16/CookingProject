@@ -58,7 +58,7 @@ public class SearchFragment extends Fragment implements searchViewInterface , on
         countryRecyclerView.setAdapter(searchCountryAdapter);
         countryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        searchPresenter = new SearchPresenter(this , Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        searchPresenter = new SearchPresenter(this , Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         searchPresenter.getAllIngredient();
         searchPresenter.getAllCategory();
         searchPresenter.getAllCountry();

@@ -25,11 +25,8 @@ import com.example.cookingproject.localdatabase.ConcreteLocalSource;
 import com.example.cookingproject.profile.presenter.ProfilePresenter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -57,7 +54,7 @@ public class ProfileFragment extends Fragment {
         logoutLinear = view.findViewById(R.id.logout_linear);
         favouriteLinear = view.findViewById(R.id.favorite_linear);
         planLinear = view.findViewById(R.id.plan_linear);
-        presenter = new ProfilePresenter(Repository.getInstance(getContext(), ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
+        presenter = new ProfilePresenter(Repository.getInstance(ConcreteLocalSource.getInstance(container.getContext()), MealClient.getInstance()));
         getUserData();
         return view;
 
