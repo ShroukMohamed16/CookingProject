@@ -100,6 +100,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface,onClickL
     @Override
     public void onClickAddTofav(Meal meal) {
         presenter.addToFav(meal);
-        presenter.uploadMeal(meal);
+       // presenter.uploadMeal(meal);
     }
 }

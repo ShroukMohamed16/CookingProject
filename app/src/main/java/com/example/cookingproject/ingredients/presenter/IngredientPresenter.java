@@ -31,9 +31,11 @@ public class IngredientPresenter implements NetworkDelegate {
         repository.repoFilterByIngredient(this,IngredientName);
     }
     public void addToFav(Meal meal){
-        if(!meal.isFavorite()) {
+        String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(!meal.isFavorite() && !Uid.equals(meal.getUid())) {
             meal.setFavorite(true);
             repository.repoInsertToFav(meal);
+            uploadMeal(meal);
         }
 
     }
@@ -52,20 +54,23 @@ public class IngredientPresenter implements NetworkDelegate {
 
     }
     public void uploadMeal(Meal meal) {
-        meal.setIdMeal(String.valueOf(System.currentTimeMillis()));
-        meal.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        firebaseFirestore.collection("Meal Details")
-                .document(meal.getIdMeal()).set(meal)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            System.out.println("Success");
-                        } else {
-                            String errorMessage = task.getException().getLocalizedMessage();
-                            System.out.println(errorMessage);
+
+            meal.setIdMeal(String.valueOf(System.currentTimeMillis()));
+            meal.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            firebaseFirestore.collection("Meal Details")
+                    .document(meal.getIdMeal()).set(meal)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                System.out.println("Success");
+                            } else {
+                                String errorMessage = task.getException().getLocalizedMessage();
+                                System.out.println(errorMessage);
+                            }
                         }
-                    }
-                });
+                    });
+
+
     }
 }

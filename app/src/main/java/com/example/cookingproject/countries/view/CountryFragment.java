@@ -65,7 +65,7 @@ public class CountryFragment extends Fragment implements onClickListenerCountry 
     @Override
     public void onClickAddToFav(Meal meal) {
         countryPresenter.addToFav(meal);
-        countryPresenter.uploadMeal(meal);
+        //countryPresenter.uploadMeal(meal);
 
     }
 }

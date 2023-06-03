@@ -76,7 +76,7 @@ public class CategoryFragment extends Fragment implements CategoryViewInterface,
     @Override
     public void onClickAddToFav(Meal meal) {
         categoryPresenter.addToFav(meal);
-        categoryPresenter.uploadMeal(meal);
+        //categoryPresenter.uploadMeal(meal);
     }
 
     @Override

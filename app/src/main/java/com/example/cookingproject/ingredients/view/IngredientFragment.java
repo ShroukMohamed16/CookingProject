@@ -66,7 +66,7 @@ public class IngredientFragment extends Fragment implements onClickListner,Ingre
     @Override
     public void addToFav(Meal meal) {
         ingredientPresenter.addToFav(meal);
-        ingredientPresenter.uploadMeal(meal);
+        //ingredientPresenter.uploadMeal(meal);
 
     }
 }

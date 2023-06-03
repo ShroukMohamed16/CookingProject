@@ -154,19 +154,18 @@ public class MealFragment extends Fragment implements mealViewInterface{
             public void onClick(View v) {
                 addToFav_btn.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.red)));
                 Meal my_meal = meal.get(0);
-                if(!my_meal.isFavorite()){
-                    my_meal.setFavorite(true);
                     mealPresenter.addToFavorite(my_meal);
-                    mealPresenter.uploadMeal(my_meal);
+                   // mealPresenter.uploadMeal(my_meal);
                 }
-            }
+
         });
         addToPlane_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String[] days = {"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("     Select Day   ");
+                builder.setTitle(" " +
+                        "    Select Day   ");
                 builder.setSingleChoiceItems(days, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -199,16 +198,5 @@ public class MealFragment extends Fragment implements mealViewInterface{
             }
         });
     }
-
-
-
-
-
-    /*@Override
-    public void addMealToPlan(Meal Meal) {
-        mealPresenter.addToPlan(Meal);
-
-    }*/
-
 
 }
